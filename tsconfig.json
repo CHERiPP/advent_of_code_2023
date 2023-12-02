@@ -3,6 +3,10 @@
       "target": "es2018",
       "module": "commonjs",
       "outDir": "out",
-      "sourceMap": true
-    }
+      "sourceMap": true,
+			"esModuleInterop": true
+    },
+		"watchOptions": {
+			"excludeFiles": ["skeleton.ts"]
+		}
   }

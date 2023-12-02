@@ -3,12 +3,17 @@
   "productName": "Advent of code",
   "version": "1.0.0",
   "description": "LAdvent of code",
-  "main": ".playground",
+  "main": "init.js",
   "keywords": [],
   "author": "pavel_chernov",
   "license": "MIT",
+  "scripts": {
+    "initDay": "node init.ts",
+    "test": "node test/main.js"
+  },
   "dependencies": {
     "@datastructures-js/priority-queue": "6.3.0",
+    "@types/node": "^20.10.2",
     "typescript": "5.1.6"
   }
 }
