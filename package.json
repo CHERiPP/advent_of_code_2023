@@ -1,0 +1,14 @@
+{
+  "name": "advent_of_code",
+  "productName": "Advent of code",
+  "version": "1.0.0",
+  "description": "LAdvent of code",
+  "main": ".playground",
+  "keywords": [],
+  "author": "pavel_chernov",
+  "license": "MIT",
+  "dependencies": {
+    "@datastructures-js/priority-queue": "6.3.0",
+    "typescript": "5.1.6"
+  }
+}
