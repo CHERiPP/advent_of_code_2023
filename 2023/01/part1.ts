@@ -1,10 +1,7 @@
 import lib from "../../lib";
 
-let year = 2023;
-let day = 1;
-console.log('test');
 lib
-	.getInput(year, day)
+	.getInput()
 	.then((data: string) => {
 		const lines = data.split("\n");
 		const digits = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
@@ -17,7 +14,6 @@ lib
 					break;
 				}
 			}
-			debugger;
 			for (let i = line.length - 1; i >= 0; i--) {
 				if (digits.has(line[i])) {
 					str += line[i];

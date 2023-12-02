@@ -4,16 +4,10 @@ lib
 	.getInput()
 	.then((data: string) => {
 		const colors = ['red', 'green', 'blue'];
-		const maxColors = {
-			red: 12,
-			green: 13,
-			blue: 14,
-		};
 		let result = 0;
 		let lines = data.split("\n");
 		for (let line of lines) {
-			const [gameStr, setsStr] = line.split(": ");
-			const [, gameNumber] = gameStr.split(" ");
+			const [, setsStr] = line.split(": ");
 			const sets = setsStr.split("; ");
 			const currentColors = {
 				red: 0,
@@ -27,10 +21,11 @@ lib
 					currentColors[color] = Math.max(currentColors[color], +numberColor);
 				}
 			}
-			if (colors.some(color => currentColors[color] > maxColors[color])) {
-				continue;
+			let currentResult = 1;
+			for (let color of colors) {
+				currentResult *= +currentColors[color];
 			}
-			result += +gameNumber;
+			result += currentResult;
 		}
 		console.log(result);
 	})

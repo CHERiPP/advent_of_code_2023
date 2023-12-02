@@ -1,10 +1,7 @@
 import lib from "../../lib";
 
-let year = 2023;
-let day = 1;
-console.log("test");
 lib
-	.getInput(year, day)
+	.getInput()
 	.then((data: string) => {
 		const lines = data.split("\n");
 		const digits = new Set(["1", "2", "3", "4", "5", "6", "7", "8", "9"]);

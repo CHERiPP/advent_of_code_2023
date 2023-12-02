@@ -3,7 +3,7 @@ let path = require('path');
 let http = require('https');
 let readline = require('readline');
 
-function getInput(year: number, day: number) {
+function getInput() {
     return new Promise((resolve, reject) => {
         let rl = readline.createInterface({
             input: process.stdin,
@@ -29,15 +29,14 @@ function getInput(year: number, day: number) {
         timeout = setTimeout(() => {
             rl.removeAllListeners();
             process.stdin.pause();
-            getFile(year, day, resolve, reject);
+            getFile(resolve, reject);
         }, 100);
     });
 }
 
-function getFile(year, day, resolve, reject) {
+function getFile(resolve, reject) {
     let currentDirectory = path.dirname(require.main.filename);
     let inputFileName = path.resolve(currentDirectory, 'input.txt');
-		console.log(currentDirectory);
     fs.exists(inputFileName, (exists) => {
         if(exists) {
             fs.readFile(inputFileName, 'utf-8', (err, data) => {
@@ -48,44 +47,7 @@ function getFile(year, day, resolve, reject) {
             });
         }
         else {
-            // Auth cookie should be in a file named auth_cookie.txt in the same directory as this lib file.
-            // Don't commit to source!!
-            fs.readFile(path.resolve(__dirname, 'auth_cookie.txt'), 'utf-8', (err, secret) => {
-                if(err) {
-                    return reject(err);
-                }
-                let fileStream = fs.createWriteStream(inputFileName);
-                let options = {
-                    protocol: 'https:',
-                    hostname: 'adventofcode.com',
-                    path: `/${year}/day/${day}/input`,
-                    headers: {'Cookie': 'session=' + secret}
-                }
-								console.dir(options);
-                let request = http.get(options, (response) => {
-                    if(response.statusCode !== 200) {
-                        fs.unlink(inputFileName, () => { });
-                        reject(`Could not download from ${options.protocol}\/\/${options.hostname}${options.path} - ${response.statusCode} ${response.statusMessage}`)
-                    }
-                    else {
-                        response.pipe(fileStream);
-                        fileStream.on('finish', () => {
-                            fileStream.close(() => {
-                                fs.readFile(inputFileName, 'utf-8', (err, data) => {
-                                    if(err) {
-                                        return reject(err);
-                                    }
-                                    resolve(data.trim());
-                                });
-                            });
-                        });
-                    }
-                }).on('error', (err) => {
-									debugger
-                    fs.unlink(inputFileName);
-                    reject(err.message);
-                });
-            });
+           reject('No file')
         }
     });
 }
