@@ -1,18 +1,12 @@
 {
-  "name": "advent_of_code",
-  "productName": "Advent of code",
+  "name": "advent_of_code_2023",
+  "productName": "Advent of code 2023",
   "version": "1.0.0",
-  "description": "LAdvent of code",
-  "main": "init.js",
+  "description": "Advent of code 2023",
   "keywords": [],
   "author": "pavel_chernov",
   "license": "MIT",
-  "scripts": {
-    "initDay": "node init.ts",
-    "test": "node test/main.js"
-  },
   "dependencies": {
-    "@datastructures-js/priority-queue": "6.3.0",
     "@types/node": "^20.10.2",
     "typescript": "5.1.6"
   }
